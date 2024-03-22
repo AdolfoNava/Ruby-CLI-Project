@@ -5,8 +5,9 @@ class Player
     @number = number
     @position = position
     @costs = costs
+    self.about
   end
   def about
-    "This is #{@name} '#{@number}', plays in the #{@position} position costs $#{@costs}.00"
+    pp "This is #{@name} '#{@number}', plays in the #{@position} position costs $#{@costs}.00"
   end
 end

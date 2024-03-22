@@ -1,4 +1,4 @@
-require_relative "teamManager"
+require 'teamManager'
 
 tM = TeamManager.new
 tM.main_menu

@@ -14,11 +14,11 @@ class TeamManager
       pp "4. Exit application"
       case choice 
       when 1
-        view_roster()
+        self.view_roster
       when 2
-        add_player()
+        self.add_player
       when 3
-        display_players()
+        self.display_players
       when 4
         break;
       else 
@@ -38,15 +38,18 @@ class TeamManager
       pp "Failed to input the correct value please try again"
       end
     end
+    pp "What is the position of the player #{name}"
+    position = gets.chomp
     salary = "test"
     while (!salary.instance_of? Integer)
-    pp "What is the salary of the player?"
+    pp "What is the salary of the player #{name}?"
       begin
       salary = Integer(gets.chomp)
       rescue 
       pp "Failed to input the correct value please try again"
       end
     end
+    Player.new(name,number,position,salary)
   end
   def display_players
     pp "Please select the version sort you want to have the players be displayed in"
