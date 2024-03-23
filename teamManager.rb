@@ -1,4 +1,4 @@
-require "player.rb"
+require "./player.rb"
 
 class TeamManager
   def initialize
@@ -7,18 +7,19 @@ class TeamManager
 
   def main_menu
     loop do
-      pp "Please select from the available optionsin the Team management system"
+      pp "Please select from the available options in the Team management system"
       pp "1. View Player Roster"
       pp "2. Add new player to Roster"
       pp "3. Remove Player from Roster"
       pp "4. Exit application"
+      choice = gets.chomp.to_i
       case choice 
       when 1
-        self.view_roster
+        self.display_players
       when 2
         self.add_player
       when 3
-        self.display_players
+        self.remove_player
       when 4
         break;
       else 
@@ -49,7 +50,7 @@ class TeamManager
       pp "Failed to input the correct value please try again"
       end
     end
-    Player.new(name,number,position,salary)
+    @players << Player.new(name,number,position,salary)
   end
   def display_players
     pp "Please select the version sort you want to have the players be displayed in"
@@ -60,11 +61,36 @@ class TeamManager
     choice = gets.chomp.to_i
     case choice
     when 1
+      @players.sort_by {|player| [player.name, player.number, player.position, player.costs]}
+      @players.each do |player|
+        pp "#{player.name}, #{player.number}, #{player.position}, #{player.costs}"
+      end
     when 2
+      @players.sort_by {|player| [player.number, player.name, player.position, player.costs]}
+      @players.each do |player|
+        pp "#{player.name}, #{player.number}, #{player.position}, #{player.costs}"
+      end
     when 3
+      @players.sort_by {|player| [player.position, player.name, player.number, player.costs]}
+      @players.each do |player|
+        pp "#{player.name}, #{player.number}, #{player.position}, #{player.costs}"
+      end
     when 4
+      @players.sort_by {|player| [player.costs, player.name, player.number, player.position]}
+      @players.each do |player|
+        pp "#{player.name}, #{player.number}, #{player.position}, #{player.costs}"
+      end
     else
-      pp "Please enter a value between 1-4"
+      pp "Please enter a value between 1-4 now returning to the main menu"
     end
+  end
+  def remove_player
+    for player in @players
+    puts "#{player.name}, #{player.number}, #{player.position}, #{player.costs}" 
+    end
+    pp "Which player do you want to remove please type the number of the player you want to delete from the roster?"
+    choice = gets.chomp.to_i
+    @players.delete_if{|player| player.number == choice}
+    pp "Player(s) with the number #{choice} is deleted from the roster."
   end
 end
