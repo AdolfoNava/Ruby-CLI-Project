@@ -9,8 +9,8 @@ class TeamManager
     loop do
       pp "Please select from the available options in the Team management system"
       pp "1. View Player Roster"
-      pp "2. Add new player to Roster"
-      pp "3. Remove Player from Roster"
+      pp "2. Add a new player to the Roster"
+      pp "3. Remove a Player from the Roster"
       pp "4. Exit application"
       choice = gets.chomp.to_i
       case choice 
